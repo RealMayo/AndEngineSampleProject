@@ -122,12 +122,14 @@ public class MainActivity extends SimpleBaseGameActivity implements IAcceleratio
 		final Rectangle roof = new Rectangle(0, 0, CAMERA_WIDTH, 2, vertexBufferObjectManager);
 		final Rectangle left = new Rectangle(0, 0, 2, CAMERA_HEIGHT, vertexBufferObjectManager);
 		final Rectangle right = new Rectangle(CAMERA_WIDTH - 2, 0, 2, CAMERA_HEIGHT, vertexBufferObjectManager);
-
+		final Rectangle shelf = new Rectangle(300, 200, 100, 2, vertexBufferObjectManager);
+		
 		final FixtureDef wallFixtureDef = PhysicsFactory.createFixtureDef(0, 0.5f, 0.5f);
 		PhysicsFactory.createBoxBody(this.mPhysicsWorld, ground, BodyType.StaticBody, wallFixtureDef);
 		PhysicsFactory.createBoxBody(this.mPhysicsWorld, roof, BodyType.StaticBody, wallFixtureDef);
 		PhysicsFactory.createBoxBody(this.mPhysicsWorld, left, BodyType.StaticBody, wallFixtureDef);
 		PhysicsFactory.createBoxBody(this.mPhysicsWorld, right, BodyType.StaticBody, wallFixtureDef);
+		PhysicsFactory.createBoxBody(this.mPhysicsWorld, shelf, BodyType.StaticBody, wallFixtureDef);
 
 		this.mScene.attachChild(ground);
 		this.mScene.attachChild(roof);
@@ -135,6 +137,8 @@ public class MainActivity extends SimpleBaseGameActivity implements IAcceleratio
 		this.mScene.attachChild(right);
 
 		this.mScene.registerUpdateHandler(this.mPhysicsWorld);
+//TODO DEBUG DRAW DEBUGDRAW - TOGGLE ON OFF  	 		
+//	    mScene.attachChild(new Box2dDebugRenderer(mPhysicsWorld, getVertexBufferObjectManager()));	
 
 		return this.mScene;
 	}
